@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import "antd/dist/antd.css";
 
 import NormalParentComponent from "./content/NormalComponent";
+import ReduxParentComponent from "./content/ReduxParentComponent";
 
 //Theming fonts
 import fontTheme from './utils/fontTheme';
@@ -16,7 +17,7 @@ function App() {
       <Router>
         <Suspense fallback="loading">
           <Switch>
-            {/* <Route exact path="/redux-heirarchy" component={LoginComponent} /> */}
+            <Route exact path="/redux-heirarchy" component={ReduxParentComponent} />
             <Route exact path="/normal-heirarchy" component={NormalParentComponent} />
             <Route path="/" exact render={() => <Redirect to="/normal-heirarchy" />} />
           </Switch>

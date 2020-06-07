@@ -4,7 +4,8 @@ import { Row, Col, Typography, Layout } from "antd";
 import styled from "styled-components";
 
 //import components
-import ListingComponent from "../../components/ListingComponent";
+import FirstListingComponent from "./FirstListingComponent";
+import SecondListingComponent from "./SecondListingComponent";
 
 const { Title } = Typography;
 const { Header } = Layout;
@@ -28,11 +29,7 @@ const StyledDiv = styled.div`
 const ListWrapperComponent = ({
   title,
   firstListTitle,
-  firstList,
   secondListTitle,
-  secondList,
-  updateFirstList,
-  updateSecondList,
 }) => {
   return (
     <StyledDiv>
@@ -41,19 +38,15 @@ const ListWrapperComponent = ({
       </StyledHeader>
       <Row>
         <Col span={24}>
-          <ListingComponent
+          <FirstListingComponent
             title={firstListTitle}
-            list={firstList}
-            updateList={updateFirstList}
           />
         </Col>
       </Row>
       <Row>
         <Col span={24}>
-          <ListingComponent
+          <SecondListingComponent
             title={secondListTitle}
-            list={secondList}
-            updateList={updateSecondList}
           />
         </Col>
       </Row>

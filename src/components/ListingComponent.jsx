@@ -34,59 +34,60 @@ const StyledNoContentWrapper = styled(Col)`
   padding: 40px 0;
 `;
 
-const DictionaryComponent = ({ title, list, updateList }) => {
-  const onCardClick = (eachItem) => {
+export default class DictionaryComponent extends React.Component {
+  onCardClick = (eachItem) => {
+    const { updateList } = this.props;
     if (updateList) {
       updateList(eachItem);
     } else {
       return false;
     }
   };
-
-  return (
-    <StyledDiv>
-      <StyledHeader>
-        <StyledTitle level={4}>{title}</StyledTitle>
-      </StyledHeader>
-      <Row>
-        {list.length ? (
-          list.map((eachCard, index) => {
-            return (
-              <Col
-                key={`${eachCard.id}-key-${index}`}
-                xs={6}
-                sm={6}
-                md={6}
-                lg={6}
-                xl={6}
-                style={{ padding: "12px" }}
-              >
-                <Card
-                  hoverable
-                  key={eachCard.id}
-                  onClick={() => {
-                    onCardClick(eachCard);
-                  }}
-                  title={eachCard.title}
-                  extra={
-                    eachCard.selected ? <CheckCircleFilled /> : <span></span>
-                  }
+  render() {
+    const { title, list } = this.props;
+    return (
+      <StyledDiv>
+        <StyledHeader>
+          <StyledTitle level={4}>{title}</StyledTitle>
+        </StyledHeader>
+        <Row>
+          {list.length ? (
+            list.map((eachCard, index) => {
+              return (
+                <Col
+                  key={`${eachCard.id}-key-${index}`}
+                  xs={6}
+                  sm={6}
+                  md={6}
+                  lg={6}
+                  xl={6}
+                  style={{ padding: "12px" }}
                 >
-                  <Text>{eachCard.description}</Text>
-                </Card>
-              </Col>
-            );
-          })
-        ) : (
-          <StyledNoContentWrapper span={24}>
-            <StyledNoContentTitle level={4}>
-              No items to show
-            </StyledNoContentTitle>
-          </StyledNoContentWrapper>
-        )}
-      </Row>
-    </StyledDiv>
-  );
-};
-
-export default DictionaryComponent;
+                  <Card
+                    hoverable
+                    key={eachCard.id}
+                    onClick={() => {
+                      this.onCardClick(eachCard);
+                    }}
+                    title={eachCard.title}
+                    extra={
+                      eachCard.selected ? <CheckCircleFilled /> : <span></span>
+                    }
+                  >
+                    <Text>{eachCard.description}</Text>
+                  </Card>
+                </Col>
+              );
+            })
+          ) : (
+            <StyledNoContentWrapper span={24}>
+              <StyledNoContentTitle level={4}>
+                No items to show
+              </StyledNoContentTitle>
+            </StyledNoContentWrapper>
+          )}
+        </Row>
+      </StyledDiv>
+    );
+  }
+}
