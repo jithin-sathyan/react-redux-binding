@@ -7,18 +7,14 @@ import selectedList from "../../../redux/selectedList";
 
 const { addToSelectedList, removeFromSelectedList } = selectedList.actions;
 
-const {
-  addToSelectedInSecondList,
-  removeFromSelectedInSecondList,
-} = secondList.actions;
+const { updateSecondList } = secondList.actions;
 
 const mapStateToProps = (state) => ({ list: state[secondList.name] });
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(
     {
-      adddToList: addToSelectedInSecondList,
-      removeFromList: removeFromSelectedInSecondList,
+      updateList: updateSecondList,
       addToSelectedList,
       removeFromSelectedList,
     },

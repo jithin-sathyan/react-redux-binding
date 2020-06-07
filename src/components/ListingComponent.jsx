@@ -36,13 +36,40 @@ const StyledNoContentWrapper = styled(Col)`
 
 export default class DictionaryComponent extends React.Component {
   onCardClick = (eachItem) => {
-    const { updateList } = this.props;
+    const { updateList, actions } = this.props;
+    if (actions) {
+      const {
+        updateList: updateListFromActions,
+        addToSelectedList,
+        removeFromSelectedList,
+      } = actions;
+
+      // add or remove from selected list
+      if (!eachItem.selected) {
+        if (addToSelectedList) {
+          addToSelectedList(eachItem);
+        }
+      } else if (eachItem.selected) {
+        if (removeFromSelectedList) {
+          removeFromSelectedList(eachItem);
+        }
+      }
+      // change the selected and unselected state of cards
+      if (updateListFromActions) {
+        updateListFromActions(eachItem);
+      } else {
+        return false;
+      }
+    }
+
+    // change the selected and unselected state of cards
     if (updateList) {
       updateList(eachItem);
     } else {
       return false;
     }
   };
+
   render() {
     const { title, list } = this.props;
     return (

@@ -52,6 +52,7 @@ const NormalParentComponent = () => {
   ] = useState([]);
 
   const updateFirstList = (item) => {
+    updateSelectedList(item);
     const clonnedFirstList = itemsForFirstListingComponent.slice(0);
     const alreadyExistingItemIndex = clonnedFirstList.findIndex(
       (eachItem) => eachItem.id === item.id
@@ -61,10 +62,10 @@ const NormalParentComponent = () => {
     ].selected;
 
     setItemsForFirstListingComponent(clonnedFirstList);
-    updateSelectedList(item);
   };
 
   const updateSecondList = (item) => {
+    updateSelectedList(item);
     const clonnedSecondList = itemsForSecondListingComponent.slice(0);
     const alreadyExistingItemIndex = clonnedSecondList.findIndex(
       (eachItem) => eachItem.id === item.id
@@ -73,7 +74,6 @@ const NormalParentComponent = () => {
       alreadyExistingItemIndex
     ].selected;
     setItemsForSecondListingComponent(clonnedSecondList);
-    updateSelectedList(item);
   };
 
   const updateSelectedList = (item) => {
@@ -92,9 +92,7 @@ const NormalParentComponent = () => {
   return (
     <StyledLayout>
       <StyledHeader>
-        <StyledTitle level={2}>
-          Item Listing with State and Props
-        </StyledTitle>
+        <StyledTitle level={2}>Item Listing with State and Props</StyledTitle>
       </StyledHeader>
       <Layout>
         <Content>
