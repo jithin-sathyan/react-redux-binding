@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 
 import ListingComponent from "../../../components/ListingComponent";
 import firstList from "../../../redux/firstList";
+import selectedList from "../../../redux/selectedList";
+
+const { addToSelectedList, removeFromSelectedList } = selectedList.actions;
 
 const {
   addToSelectedInFirstList,
@@ -10,14 +13,16 @@ const {
 } = firstList.actions;
 
 const mapStateToProps = (state) => ({
-    list: state[firstList.name],
-  });
+  list: state[firstList.name],
+});
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(
     {
-      addToSelectedInFirstList,
-      removeFromSelectedInFirstList,
+      addToList: addToSelectedInFirstList,
+      removeFromList: removeFromSelectedInFirstList,
+      addToSelectedList,
+      removeFromSelectedList,
     },
     dispatch
   ),
