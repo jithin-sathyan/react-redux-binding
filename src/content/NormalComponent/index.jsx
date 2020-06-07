@@ -84,7 +84,7 @@ const NormalParentComponent = () => {
     if (alreadyExistingItemIndex !== -1) {
       clonnedSelectedList.splice(alreadyExistingItemIndex, 1);
     } else {
-      clonnedSelectedList.push(item);
+      clonnedSelectedList.push({ ...item });
     }
     setSelectedListingComponent(clonnedSelectedList);
   };
